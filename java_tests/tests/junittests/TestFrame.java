@@ -70,10 +70,10 @@ public class TestFrame extends JFrame implements CefLifeSpanHandler, CefLoadHand
             CefApp.setIsRemoteEnabled(config.isRemoteEnabled());
             SystemBootstrap.setLoader(config.getLoader());
             CefApp.startup(config.getAppArgs());
-            if (!config.isRemoteEnabled() || CefApp.getInstance() != null) {
-                cefApp_ = CefApp.getInstance();
-            } else {
+            if (config.isRemoteEnabled()) {
                 cefApp_ = CefApp.getInstance(CefInitHelper.getConfig().getAppArgs(), CefInitHelper.getConfig().getCefSettings(), CefInitHelper.getConfig().getServerExe());
+            } else {
+                cefApp_ = CefApp.getInstance();
             }
         }
         return cefApp_;
